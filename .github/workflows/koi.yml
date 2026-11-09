@@ -16,20 +16,11 @@ jobs:
   koi:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: yalongwastaken/git-koi@7305e9b1fadee6f43d3b4fa543a25d4cde79856e # v1.0.2
+      - uses: actions/checkout@v7
+      - uses: yalongwastaken/git-koi@v1
         with:
           body: white        # white | black | asagi | tea | gold | platinum
           output-dir: koi
-      - name: Put the koi in water
-        shell: bash
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq imagemagick
-          convert -size 64x64 gradient:'#7fd0e8-#1b5878' -filter point -resize 512x512 /tmp/water.png
-          convert \( koi/koi.gif -coalesce \) null: /tmp/water.png \
-            -compose DstOver -layers composite -loop 0 -layers optimize /tmp/koi.gif
-          mv /tmp/koi.gif koi/koi.gif
       - name: Commit the koi if it changed
         shell: bash
         run: |
