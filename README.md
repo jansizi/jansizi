@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="koi/koi.gif" width="256" alt="My koi" />
+  <a href="https://github.com/yalongwastaken/git-koi">
+    <img src="koi/koi.gif" width="256" alt="My koi" />
+  </a>
   <br />
-  <sub>Koi drawn by <a href="https://github.com/yalongwastaken/git-koi">git-koi</a></sub>
+  <sub>Koi generated with <a href="https://github.com/yalongwastaken/git-koi">git-koi</a></sub>
 </p>
