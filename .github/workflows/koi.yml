@@ -33,3 +33,15 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit --quiet --message "koi: draw the day's koi"
           git push --quiet
+      - name: Put the koi in water
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq imagemagick
+          # Pixel-art water: a 64x64 light-to-deep gradient scaled up 8x, so it shows as 8 px bands
+          convert -size 64x64 gradient:'#7fd0e8-#1b5878' -filter point -resize 512x512 /tmp/water.png
+          # Put the water behind every frame of the koi, keeping its timing and looping forever
+          convert \( koi/koi.gif -coalesce \) null: /tmp/water.png \
+            -compose DstOver -layers composite -loop 0 -layers optimize /tmp/koi.gif
+          mv /tmp/koi.gif koi/koi.gif
+        
